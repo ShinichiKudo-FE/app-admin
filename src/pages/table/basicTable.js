@@ -50,10 +50,10 @@ export default class BasicTable extends Component {
         this.setState({
             dataSource: dataSource
         })
-        this.request();
+        this.requestList();
     }
     // 动态获取mock数据
-    request = ()=>{
+    requestList = ()=>{
         let _this = this;     
         axios.ajax({
             url:'/table/list',
@@ -73,7 +73,7 @@ export default class BasicTable extends Component {
                     selectedRows:null,
                     pagination: Utils.pagination(res,(current)=>{
                         _this.params.page = current;
-                        this.request();
+                        this.requestList();
                     })
                 })
             }
@@ -104,7 +104,7 @@ export default class BasicTable extends Component {
             content: `您确定要删除这些数据吗？${ids.join(',')}`,
             onOk: () => {
                 message.success('删除成功');
-                this.request();
+                this.requestList();
             }
         })
     })

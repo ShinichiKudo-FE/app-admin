@@ -11,11 +11,11 @@ export default class HighTable extends React.Component {
         page: 1
     }
     componentDidMount() {
-        this.request();
+        this.requestList();
     }
 
     // 动态获取mock数据
-    request = () => {
+    requestList = () => {
         let _this = this;
         axios.ajax({
             url: '/table/high/list',
@@ -33,7 +33,7 @@ export default class HighTable extends React.Component {
                     dataSource: res.result.list,
                     pagination: Utils.pagination(res, (current) => {
                         _this.params.page = current;
-                        this.request();
+                        this.requestList();
                     })
                 })
             }
@@ -55,7 +55,7 @@ export default class HighTable extends React.Component {
             content: '您确认要删除此条数据吗？',
             onOk: () => {
                 message.success('删除成功');
-                this.request();
+                this.requestList();
             }
         })
     }
