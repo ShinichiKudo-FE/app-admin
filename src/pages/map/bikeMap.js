@@ -154,7 +154,7 @@ export default class Order extends React.Component {
                     <BaseForm formList={this.formList} filterSubmit={this.handleFilterSubmit} />
                 </Card>
                 <Card style={{ marginTop: 10 }}>
-                    <div>共{this.state.total_count}辆车</div>
+                    <div style={{color:"blue",fontWeight:'bold'}}>共{this.state.total_count}辆车</div>
                     <div id="container" style={{ height: 500 }}></div>
                 </Card>
             </div>

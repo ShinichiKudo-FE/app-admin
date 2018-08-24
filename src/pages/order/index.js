@@ -36,34 +36,35 @@ export default class Order extends Component {
             list: [{ id: '0', name: '全部' }, { id: '1', name: '进行中' }, { id: '2', name: '结束行程' }]
         }
     ]
-    handleFilter = (params) => {
-        this.params = params;
-        this.requestList();
-    }
     componentDidMount(){
         this.requestList();
     }
+    handleFilter = (params) => {
+        this.params = params;
+        this.requestList();
+    }      
     // 请求接口
     requestList =() =>{
         let _this = this;
-        axios.ajax({
-            url: '/order/list',
-            data: {
-                params: this.params
-            }
-        }).then((res) => {
-            let list = res.result.item_list.map((item, index) => {
-                item.key = index;
-                return item;
-            });
-            this.setState({
-                list,
-                pagination: Utils.pagination(res, (current) => {
-                    _this.params.page = current;
-                    _this.requestList();
-                })
-            })
-        })
+        axios.requestList(_this,'/order/list',this.params,true);
+        // axios.ajax({
+        //     url: '/order/list',
+        //     data: {
+        //         params: this.params
+        //     }
+        // }).then((res) => {
+        //     let list = res.result.item_list.map((item, index) => {
+        //         item.key = index;
+        //         return item;
+        //     });
+        //     this.setState({
+        //         list,
+        //         pagination: Utils.pagination(res, (current) => {
+        //             _this.params.page = current;
+        //             _this.requestList();
+        //         })
+        //     })
+        // })
     }
     // 订单结束确认
     handleConfirm = () => {
