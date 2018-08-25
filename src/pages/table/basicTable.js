@@ -96,9 +96,17 @@ export default class BasicTable extends Component {
     handleDelete = (() => {
         let rows = this.state.selectedRows;
         let ids = [];
+        if (!rows) {
+            Modal.info({
+                title: '信息',
+                content: '请选择一个用户'
+            })
+            return;
+        }
         rows.map((item) => {
             ids.push(item.id)
         })
+        
         Modal.confirm({
             title: '删除提示',
             content: `您确定要删除这些数据吗？${ids.join(',')}`,

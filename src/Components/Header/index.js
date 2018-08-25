@@ -5,7 +5,9 @@ import Util from '../../Utils/utils';
 import axios from '../../axios';
 import { connect } from 'react-redux'
 class Header extends React.Component{
-    state = {}
+    state = {
+        userName: "游客"
+    }
     componentWillMount(){
         this.setState({
             username: '管理员'
